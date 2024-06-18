@@ -2,7 +2,7 @@
 
 Python code accompanying the following publication: 
 
-Polina Arsenteva, Mohamed Amine Benadjaoud, Hervé Cardot. (2024) Estimating the Linear Relation Between Variables That Are Never Jointly Observed: An Application in In Vivo Experiments. [arXiv:2403.00140](https://doi.org/10.48550/arXiv.2403.00140).
+Polina Arsenteva, Mohamed Amine Benadjaoud, Hervé Cardot. (2024) Estimating the Linear Relation Between Variables That Are Never Jointly Observed. [arXiv:2403.00140](https://doi.org/10.48550/arXiv.2403.00140).
 
 
 - ### vivo_lm.py
