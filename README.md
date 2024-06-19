@@ -11,8 +11,3 @@ Main script, contains functions for linear regression parameters estimation with
 - ### vivo_sim.ipynb
 Simulation study.
 
-- ### vivo_volume_effect.py
-Analysis of real data on the in vivo effect of irradiated volume.
-
-
-
