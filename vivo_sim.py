@@ -98,10 +98,11 @@ def plot_ci_heatmaps(filename, increasing=True, title=None, savefilename=None):
     all_cond_values = np.array(all_cond_values)
     global_min = all_cond_values.min()
     global_max = all_cond_values.max()
+    half_spectrum = global_min + (global_max - global_min) / 2
     if increasing is True:
-        cmap = 'RdYlGn'
+        cmap = 'Greens'
     else:
-        cmap = 'RdYlGn_r'
+        cmap = 'Greens_r'
     fig, axes = plt.subplots(1, len(conds_lvl_1), figsize=(8 * len(conds_lvl_1), 6))
     for i1, c1 in enumerate(conds_lvl_1):
         pos = axes[i1].imshow(all_cond_values[i1], aspect='auto', cmap=cmap,
@@ -113,8 +114,8 @@ def plot_ci_heatmaps(filename, increasing=True, title=None, savefilename=None):
         # add the values
         for (i, j), value in np.ndenumerate(all_cond_values[i1],):
             axes[i1].text(j, i, f'{value:#.2f}', va='center', ha='center', fontsize=27,
-                    color=('black' if (value > global_min + (global_max - global_min) / 4
-                                       and value < global_max - (global_max - global_min) / 4) 
+                    color=('black' if (((value < half_spectrum) and increasing)
+                                       or ((value > half_spectrum) and not increasing))
                            else 'white'))
         conds_lvl_2 = sheets_dict[c1].columns[1:]
         for i2, c2 in enumerate(conds_lvl_2):
@@ -277,6 +278,6 @@ for i, key in enumerate(ci_power_dict.keys()):
 writer.close()
 
 ### Plot heatmaps:
-plot_ci_heatmaps(folder_name + "/sim_coverage_rate.xlsx", title="Coverage rate")
-plot_ci_heatmaps(folder_name + "/sim_ci_amplitude.xlsx", increasing=False, title="Amplitude")
-plot_ci_heatmaps(folder_name + "/sim_ci_power.xlsx", title="Power")
+plot_ci_heatmaps(folder_name + "/sim_coverage_rate_tmp.xlsx", title="Coverage rate")
+plot_ci_heatmaps(folder_name + "/sim_ci_amplitude_tmp.xlsx", increasing=False, title="Amplitude")
+plot_ci_heatmaps(folder_name + "/sim_ci_power_tmp.xlsx", title="Power")
